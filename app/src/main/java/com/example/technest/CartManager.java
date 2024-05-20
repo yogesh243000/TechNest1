@@ -53,7 +53,13 @@ public class CartManager {
         if (cartItemsJson.isEmpty()) {
             return new ArrayList<>();
         }
-        Type type = new TypeToken<ArrayList<CartItem>>(){}.getType();
+        Type type = new TypeToken<ArrayList<CartItem>>() {}.getType();
         return gson.fromJson(cartItemsJson, type);
+    }
+
+    public void clearCartData() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 }

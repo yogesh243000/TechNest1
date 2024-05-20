@@ -3,20 +3,16 @@ package com.example.technest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +22,6 @@ public class CartActivity extends AppCompatActivity {
     private CartAdapter cartAdapter;
     private TextView totalCostTextView;
     private CartManager cartManager;
-
     private List<CartItem> cartItems = new ArrayList<>();
 
     @Override
@@ -44,7 +39,6 @@ public class CartActivity extends AppCompatActivity {
         cartManager = CartManager.getInstance(this);
 
         // Retrieve cart items
-
         if (cartManager != null) {
             cartItems.addAll(cartManager.loadCartDataFromStorage());
         }
@@ -62,21 +56,18 @@ public class CartActivity extends AppCompatActivity {
         updateCartUI(cartItems);
     }
 
-    // Refresh cart data when returning to home page
     @Override
     protected void onResume() {
         super.onResume();
         // Reload cart data from persistent storage and update UI
-        List<CartItem> cartItems = new ArrayList<>();
+        cartItems.clear();
         if (cartManager != null) {
             cartItems.addAll(cartManager.loadCartDataFromStorage());
         }
         updateCartUI(cartItems);
     }
 
-    // Method to update the UI based on refreshed cart data
     public void updateCartUI(List<CartItem> cartItems) {
-        // Calculate and display total cost
         double totalCost = 0;
         for (CartItem item : cartItems) {
             totalCost += item.getPrice() * item.getQuantity();
@@ -84,10 +75,7 @@ public class CartActivity extends AppCompatActivity {
         totalCostTextView.setText(String.format("Total Cost: $%.2f", totalCost));
     }
 
-
-    // Method to place order
     private void placeOrder() {
-        // Create a Bundle to pass order information
         Bundle orderBundle = new Bundle();
         ArrayList<String> productNames = new ArrayList<>();
         ArrayList<Double> productAmounts = new ArrayList<>();
@@ -105,22 +93,23 @@ public class CartActivity extends AppCompatActivity {
             }
             orderBundle.putDoubleArray("amounts", amountsArray);
 
-            // Create an intent to start the next activity (CheckoutActivity)
             Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
-            intent.putExtra("orderBundle", orderBundle); // Pass the orderBundle as extra
+            intent.putExtra("orderBundle", orderBundle);
             startActivity(intent);
+
+            // Clear cart after placing order
+            cartManager.clearCartData();
+            cartItems.clear();
+            updateCartUI(cartItems);
         } else {
             Log.d("CartActivity", "cartItems is null or empty");
             Toast.makeText(CartActivity.this, "Your cart is empty", Toast.LENGTH_SHORT).show();
         }
     }
 
-
-    // Handle toolbar item clicks
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            // Handle the back button click event here
             Intent intent = new Intent(CartActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();

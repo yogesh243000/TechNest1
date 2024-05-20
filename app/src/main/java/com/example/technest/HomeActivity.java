@@ -3,12 +3,15 @@ package com.example.technest;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +55,24 @@ public class HomeActivity extends AppCompatActivity {
             }
 
         });
+        EditText editTextSearch = findViewById(R.id.editTextSearch);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Not needed for this implementation
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Filter the product list when text changes
+                productAdapter.filter(s.toString().toLowerCase());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Not needed for this implementation
+            }
+        });
 
 
     }
@@ -73,9 +94,18 @@ public class HomeActivity extends AppCompatActivity {
             // Navigate to PurchaseHistoryActivity
             startActivity(new Intent(HomeActivity.this, PurchaseHistoryActivity.class));
             return true;
+        }else if (id == R.id.logout) {
+            // Navigate to LoginActivity
+           logout();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    private void logout() {
+        // Implement logout logic here
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private List<Product> getProductList() {
@@ -121,9 +151,32 @@ public class HomeActivity extends AppCompatActivity {
 
     private class ProductAdapter extends RecyclerView.Adapter<ProductViewHolder> {
         private List<Product> productList;
+        private List<Product> filteredList;
 
         public ProductAdapter(List<Product> productList) {
             this.productList = productList;
+            this.filteredList = new ArrayList<>(productList); // Initialize the filtered list with all products
+        }
+
+        public void filter(String query) {
+            filteredList.clear(); // Clear the current filtered list
+
+            // If the query is empty, add all products to the filtered list
+            if (query.isEmpty()) {
+                filteredList.addAll(productList);
+            } else {
+                // Convert the query to lower case for case-insensitive search
+                String filterPattern = query.toLowerCase().trim();
+                // Iterate through the original product list
+                for (Product product : productList) {
+                    // If the product name contains the query, add it to the filtered list
+                    if (product.getName().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(product);
+                    }
+                }
+            }
+
+            notifyDataSetChanged(); // Notify the adapter that the data set has changed
         }
 
         @NonNull
@@ -133,39 +186,37 @@ public class HomeActivity extends AppCompatActivity {
             return new ProductViewHolder(view);
         }
 
+        @Override
+        public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+            Product product = filteredList.get(position); // Use filtered list instead of original list
+            holder.productNameTextView.setText(product.getName());
+            holder.productPriceTextView.setText(product.getPrice());
+            holder.productImageView.setImageResource(product.getImageResourceId());
 
-            @Override
-            public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
-                Product product = productList.get(position);
-                holder.productNameTextView.setText(product.getName());
-                holder.productPriceTextView.setText(product.getPrice());
-                holder.productImageView.setImageResource(product.getImageResourceId());
+            // Set click listener for the product item
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Create a new Intent to navigate to the detail page
+                    Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
+                    // Pass any data needed to the detail page using intent extras
+                    intent.putExtra("productName", product.getName());
+                    intent.putExtra("productPrice", product.getPrice());
+                    intent.putExtra("productDescription", product.getDescription());
+                    intent.putExtra("productImageResourceId", product.getImageResourceId());
+                    // Example: Passing product ID
+                    // Start the activity
+                    v.getContext().startActivity(intent);
 
-                // Set click listener for the product item
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Create a new Intent to navigate to the detail page
-                        Intent intent = new Intent(v.getContext(), ProductDetailActivity.class);
-                        // Pass any data needed to the detail page using intent extras
-                        intent.putExtra("productName", product.getName());
-                        intent.putExtra("productPrice", product.getPrice());
-                        intent.putExtra("productDescription", product.getDescription());
-                        intent.putExtra("productImageResourceId", product.getImageResourceId());
-                        // Example: Passing product ID
-                        // Start the activity
-                        v.getContext().startActivity(intent);
-
-                        // Show a toast message to indicate navigation
-                        Toast.makeText(v.getContext(), "Navigating to detail page...", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
+                    // Show a toast message to indicate navigation
+                    Toast.makeText(v.getContext(), "Navigating to detail page...", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         @Override
         public int getItemCount() {
-            return productList.size();
+            return filteredList.size(); // Return the size of the filtered list
         }
     }
 }

@@ -2,7 +2,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/smooth_background">
 
     <ImageView
         android:id="@+id/imageViewProduct"
@@ -49,13 +50,18 @@
                 android:id="@+id/buttonDecreaseQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-" />
+                android:text="-"
+                android:textColor="@color/white"
+                android:background="@drawable/button_color"
+                />
 
             <Button
                 android:id="@+id/buttonIncreaseQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+" />
+                android:text="+"
+                android:textColor="@color/white"
+                android:background="@drawable/button_color"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -64,5 +70,7 @@
         android:id="@+id/buttonRemove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remove" />
+        android:text="Remove"
+        android:textColor="@color/white"
+        android:background="@drawable/button_color"/>
 </LinearLayout>
