@@ -1,0 +1,110 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/smooth_background">
+
+        <!-- Product Image -->
+        <ImageView
+            android:id="@+id/productImageView"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/iphone" />
+
+        <!-- Product Details -->
+        <TextView
+            android:id="@+id/textViewProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product Name"
+            android:textSize="18sp"
+            android:layout_below="@id/productImageView"
+            android:layout_margin="16dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textViewProductDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewProductName"
+            android:text="Product Description"
+            android:textSize="16sp"
+            android:layout_margin="16dp" />
+
+        <TextView
+            android:id="@+id/textViewProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewProductDescription"
+            android:text=" Total Price: $0.00"
+            android:textSize="16sp"
+            android:layout_margin="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <!-- Quantity Selection -->
+        <TextView
+            android:id="@+id/textViewQuantityLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewProductPrice"
+            android:text="Quantity:"
+            android:textSize="16sp"
+            android:layout_margin="16dp" />
+
+        <Button
+            android:id="@+id/buttonDecreaseQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewProductPrice"
+            android:layout_toEndOf="@id/textViewQuantityLabel"
+            android:text="-"
+            android:textColor="@color/white"
+            android:background="@drawable/button_color"/>
+
+        <TextView
+            android:id="@+id/textViewQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewProductPrice"
+            android:layout_toEndOf="@id/buttonDecreaseQuantity"
+            android:text="1"
+            android:textSize="16sp"
+            android:layout_margin="16dp" />
+
+        <Button
+            android:id="@+id/buttonIncreaseQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewProductPrice"
+            android:layout_toEndOf="@id/textViewQuantity"
+            android:text="+"
+            android:textColor="@color/white"
+            android:background="@drawable/button_color"/>
+
+        <!-- Add to Cart Button -->
+        <Button
+            android:id="@+id/buttonAddToCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Add to Cart"
+            android:layout_below="@+id/buttonIncreaseQuantity"
+            android:textSize="16sp"
+            android:layout_margin="16dp"
+            android:background="@drawable/button_color"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
+</ScrollView>

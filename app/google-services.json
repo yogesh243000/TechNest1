@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "761638060844",
+    "project_id": "technest-80141",
+    "storage_bucket": "technest-80141.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761638060844:android:c438718617ccad2c80e289",
+        "android_client_info": {
+          "package_name": "com.example.technest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsZqUe0GZ-bdG05IkYcea_WU-kGnWRbXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,24 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Button pressed state -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="8dp" />
+            <gradient
+                android:angle="90"
+                android:startColor="#C51162"
+                android:endColor="#FF4081"
+                android:type="linear" />
+        </shape>
+    </item>
+    <!-- Button default state -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="8dp" />
+            <gradient
+                android:angle="90"
+                android:startColor="#FF4081"
+                android:endColor="#C51162"
+                android:type="linear" />
+        </shape>
+    </item>
+</selector>

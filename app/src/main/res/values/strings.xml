@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TechNest</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="username_or_email">Username or Email</string>
+</resources>
