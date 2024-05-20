@@ -25,6 +25,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.github.muddz.styleabletoast.StyleableToast;
+
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText editTextName1, editTextName2, editTextEmail, editTextPassword;
@@ -73,10 +75,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString().trim();
 
                 if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(RegistrationActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(RegistrationActivity.this,"Please fill in all fields", R.style.mytoast).show();
                     buttonRegister.setEnabled(true);
                 } else if (password.length() < 6) {
-                    Toast.makeText(RegistrationActivity.this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(RegistrationActivity.this,"Please fill in all fields", R.style.mytoast).show();
                     buttonRegister.setEnabled(true);
                 } else {
                     progressBar.setVisibility(View.VISIBLE);
@@ -95,11 +97,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
-                        Toast.makeText(RegistrationActivity.this, "User registered successfully", Toast.LENGTH_SHORT).show();
+
+                        StyleableToast.makeText(RegistrationActivity.this, "Registration successful", R.style.mytoast).show();
                         Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(RegistrationActivity.this, "Failed to register user: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(RegistrationActivity.this, "Registration failed", R.style.mytoast).show();
                         buttonRegister.setEnabled(true);
                     }
                 });

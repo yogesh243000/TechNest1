@@ -6,4 +6,18 @@
     </style>
 
     <style name="Theme.TechNest" parent="Base.Theme.TechNest" />
+
+    <style name="mytoast">
+
+        <item name="stTextColor">#fff</item>
+
+
+        <item name="stColorBackground">#E91E63</item>
+
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stStrokeColor">#fff</item>
+
+        <item name="stRadius">10dp</item>
+    </style>
+
 </resources>

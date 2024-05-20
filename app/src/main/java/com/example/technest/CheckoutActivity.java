@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import io.github.muddz.styleabletoast.StyleableToast;
+
 public class CheckoutActivity extends AppCompatActivity {
 
     private EditText fullNameEditText, addressEditText, phoneEditText, emailEditText;
@@ -65,7 +67,7 @@ public class CheckoutActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString().trim();
 
                 if (fullName.isEmpty() || address.isEmpty() || phone.isEmpty() || email.isEmpty()) {
-                    Toast.makeText(CheckoutActivity.this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(CheckoutActivity.this, "Please fill out all fields", R.style.mytoast).show();
                 } else {
                     String orderId = "ORD" + System.currentTimeMillis();
                     String date = java.text.DateFormat.getDateTimeInstance().format(new java.util.Date());
@@ -94,6 +96,6 @@ public class CheckoutActivity extends AppCompatActivity {
                 "Address: " + address + "\n" +
                 "Phone: " + phone + "\n" +
                 "Email: " + email;
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        StyleableToast.makeText(this, message, R.style.mytoast).show();
     }
 }

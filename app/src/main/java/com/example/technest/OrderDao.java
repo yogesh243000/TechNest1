@@ -33,7 +33,7 @@ public class OrderDao {
     public List<Order> getAllOrders() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         List<Order> orderList = new ArrayList<>();
-        Log.d("OrderDao", "Fetching all orders from the database.");
+
 
         Cursor cursor = db.query(
                 OrderContract.OrderEntry.TABLE_NAME,
@@ -54,7 +54,6 @@ public class OrderDao {
 
             // Only add orders with non-empty product names
             if (!product.isEmpty()) {
-                Log.d("OrderDao", "Order: " + orderId + ", Date: " + date + ", Total Amount: " + totalAmount + ", Status: " + status + ", Product: " + product);
                 orderList.add(new Order(orderId, date, totalAmount, status, product));
             }
         }

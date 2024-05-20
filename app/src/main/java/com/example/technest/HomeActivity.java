@@ -24,6 +24,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.muddz.styleabletoast.StyleableToast;
+
 public class HomeActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
@@ -88,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "Settings clicked", Toast.LENGTH_SHORT).show();
+            StyleableToast.makeText(this, "Settings clicked", R.style.mytoast).show();
             return true;
         } else if (id == R.id.action_purchase_history) {
             // Navigate to PurchaseHistoryActivity
@@ -204,12 +206,8 @@ public class HomeActivity extends AppCompatActivity {
                     intent.putExtra("productPrice", product.getPrice());
                     intent.putExtra("productDescription", product.getDescription());
                     intent.putExtra("productImageResourceId", product.getImageResourceId());
-                    // Example: Passing product ID
-                    // Start the activity
                     v.getContext().startActivity(intent);
 
-                    // Show a toast message to indicate navigation
-                    Toast.makeText(v.getContext(), "Navigating to detail page...", Toast.LENGTH_SHORT).show();
                 }
             });
         }

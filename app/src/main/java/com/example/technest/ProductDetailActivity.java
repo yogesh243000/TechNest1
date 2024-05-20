@@ -67,7 +67,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         buttonAddToCart.setOnClickListener(view -> {
             double price = Double.parseDouble(productPrice.replace("$", ""));
             addToCart(productName, quantity, price, productImageResourceId);
-            Log.d("ProductDetailActivity", "Added to cart: " + productName + ", Quantity: " + quantity + ", Price: " + price + ", ImageResId: " + productImageResourceId);
             Intent cartIntent = new Intent(ProductDetailActivity.this, CartActivity.class);
             startActivity(cartIntent);
         });

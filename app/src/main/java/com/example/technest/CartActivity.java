@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.muddz.styleabletoast.StyleableToast;
+
 public class CartActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewCart;
@@ -103,7 +105,7 @@ public class CartActivity extends AppCompatActivity {
             updateCartUI(cartItems);
         } else {
             Log.d("CartActivity", "cartItems is null or empty");
-            Toast.makeText(CartActivity.this, "Your cart is empty", Toast.LENGTH_SHORT).show();
+            StyleableToast.makeText(CartActivity.this, "Your cart is empty", R.style.mytoast).show();
         }
     }
 

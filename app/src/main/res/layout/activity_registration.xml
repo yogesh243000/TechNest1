@@ -7,6 +7,8 @@
     android:background="@drawable/smooth_background"
     android:padding="16dp">
 
+
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="254dp"
@@ -15,6 +17,7 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_color"
         android:fontFamily="sans-serif"
+
         android:gravity="center"
         android:text="Create an Account"
         android:textColor="@color/white"
@@ -91,7 +94,7 @@
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="textPassword"
 
         android:textSize="18sp" />
     </com.google.android.material.textfield.TextInputLayout>

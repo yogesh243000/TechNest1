@@ -19,6 +19,8 @@ import androidx.core.content.ContextCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import io.github.muddz.styleabletoast.StyleableToast;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextUsernameOrEmail, editTextPassword;
@@ -100,14 +102,14 @@ public class LoginActivity extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if (user != null) {
                             // User is signed in
-                            Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                            StyleableToast.makeText(LoginActivity.this, "Login Successful", R.style.mytoast).show();
                             startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                             finish();
                         }
                     } else {
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
+                        StyleableToast.makeText(LoginActivity.this, "Authentication failed.", R.style.mytoast).show();
+
                     }
                 });
     }

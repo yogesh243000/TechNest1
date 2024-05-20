@@ -42,4 +42,8 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.google.firebase:firebase-auth:23.0.0")
     implementation("com.google.firebase:firebase-firestore:25.0.0")
+    implementation("io.github.muddz:styleabletoast:2.4.0")
+    implementation("com.google.android.gms:play-services-recaptcha:17.0.0")
+
+
 }

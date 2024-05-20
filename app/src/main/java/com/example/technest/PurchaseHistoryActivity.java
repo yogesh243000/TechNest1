@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import io.github.muddz.styleabletoast.StyleableToast;
+
 public class PurchaseHistoryActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewPurchaseHistory;
@@ -39,7 +41,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
             purchaseHistoryAdapter = new PurchaseHistoryAdapter(orderHistory);
             recyclerViewPurchaseHistory.setAdapter(purchaseHistoryAdapter);
         } else {
-            Toast.makeText(this, "No purchase history available", Toast.LENGTH_SHORT).show();
+            StyleableToast.makeText(PurchaseHistoryActivity.this, "No purchase history found", R.style.mytoast).show();
         }
 
 
@@ -55,8 +57,7 @@ public class PurchaseHistoryActivity extends AppCompatActivity {
                 orderDao.deleteAllOrders();
 
                 // Notify the user that the history has been deleted
-                Toast.makeText(PurchaseHistoryActivity.this, "All purchase history deleted", Toast.LENGTH_SHORT).show();
-
+                StyleableToast.makeText(PurchaseHistoryActivity.this, "Purchase history deleted", R.style.mytoast).show();
                 // Refresh the RecyclerView to show an empty list
                 List<Order> emptyList = orderDao.getAllOrders();
                 purchaseHistoryAdapter.setOrderHistory(emptyList);
