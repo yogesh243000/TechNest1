@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 String password = editTextPassword.getText().toString().trim();
 
                 if (usernameOrEmail.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                    StyleableToast.makeText(LoginActivity.this, "Please fill all fields", R.style.mytoast).show();
                 } else {
                     // Call login function
                     login(usernameOrEmail, password);
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle forget password click
-                Toast.makeText(LoginActivity.this, "Forget button clicked! ", Toast.LENGTH_SHORT).show();
+                StyleableToast.makeText(LoginActivity.this, "Forget Password", R.style.mytoast).show();
             }
 
         });
