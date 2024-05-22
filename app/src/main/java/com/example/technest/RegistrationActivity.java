@@ -102,7 +102,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
                         startActivity(intent);
                     } else {
-                        StyleableToast.makeText(RegistrationActivity.this, "Registration failed", R.style.mytoast).show();
+                        StyleableToast.makeText(RegistrationActivity.this, "Already registered", R.style.mytoast).show();
                         buttonRegister.setEnabled(true);
                     }
                 });
